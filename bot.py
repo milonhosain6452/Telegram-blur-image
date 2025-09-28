@@ -54,9 +54,10 @@ def process_image(image_bytes):
 
 # --- Bot Handlers ---
 
-@app_bot.on_message(filters.photo & ~filters.edited)
+@app_bot.on_message(filters.photo)
 async def blur_photo(client: Client, message: Message):
     try:
+        # caption বাদ যাবে (reply তে দেব না)
         photo = await message.download(in_memory=True)
         processed = process_image(photo.getvalue())
 
