@@ -56,8 +56,8 @@ def process_image(image_bytes):
 
 @app_bot.on_message(filters.photo)
 async def blur_photo(client: Client, message: Message):
+    print(f"📸 Received a photo from {message.from_user.id}")  # log
     try:
-        # caption বাদ যাবে (reply তে দেব না)
         photo = await message.download(in_memory=True)
         processed = process_image(photo.getvalue())
 
@@ -65,12 +65,15 @@ async def blur_photo(client: Client, message: Message):
             processed,
             caption="✅ আপনার ছবিটি Blur করা হয়েছে"
         )
+        print("✅ Sent blurred photo")
     except Exception as e:
+        print(f"❌ Error: {e}")
         await message.reply_text(f"❌ Error: {e}")
 
 
 @app_bot.on_message(filters.command("start") & filters.private)
 async def start(client, message):
+    print(f"▶️ /start by {message.from_user.id}")  # log
     await message.reply_text("👋 হ্যালো! আমাকে কোনো ছবি পাঠান, আমি সেটিকে blur করে দেব।")
 
 
@@ -83,6 +86,7 @@ def home():
 
 
 def run_bot():
+    print("🚀 Starting Telegram bot...")
     app_bot.run()
 
 
@@ -92,4 +96,5 @@ if __name__ == "__main__":
 
     # Run flask server
     port = int(os.environ.get("PORT", 8080))
+    print(f"🌍 Starting Flask server on port {port}")
     flask_app.run(host="0.0.0.0", port=port)
