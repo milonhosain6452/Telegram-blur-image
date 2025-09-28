@@ -9,7 +9,7 @@ from PIL import Image, ImageFilter, ImageDraw, ImageFont
 # --- Bot credentials ---
 API_ID = 22134923
 API_HASH = "d3e9d2f01d3291e87ea65298317f86b8"
-BOT_TOKEN = "8285636468:AAFgGV80OtCP-NY2HelzOPFpYfdl0RiPJ7g"
+BOT_TOKEN = "8285636468:AAFPRQ1oS1N3I4MBI85RFEOZXW4pwBrWHLg"
 OWNER_ID = 7383046042
 
 # --- Pyrogram client ---
